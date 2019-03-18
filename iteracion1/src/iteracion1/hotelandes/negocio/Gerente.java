@@ -27,10 +27,12 @@ public class Gerente extends Usuario
 		super();
 	}
 
-	public Gerente(Hotel hotel) {
-		super();
+	public Gerente(String tipoDocumento, long numeroDocumento, String nombre, String correo,Hotel hotel) {
+		super(tipoDocumento, numeroDocumento, nombre, correo);
 		this.hotel = hotel;
+		// TODO Auto-generated constructor stub
 	}
+
 
 	public Hotel getHotel() {
 		return hotel;

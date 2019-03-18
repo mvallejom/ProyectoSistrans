@@ -1,6 +1,7 @@
 package iteracion1.hotelandes.negocio;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * <!-- begin-user-doc -->
@@ -10,76 +11,30 @@ import java.util.Date;
 
 public class ReservaHabitacion
 {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-
 	private Date fechaEntrada;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
 
 	private Date fechaSalida;
 
-	private Pago tipoPago;
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-
 	private int numeroPersonas;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-
 	private String hotel;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-
-	private Cliente cliente;
-
-	private TipoHabitacion tipo;
 	
-	private PlanConsumo planConsumo ;
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 */
+	private List<Cliente> clientes;
+
 	public ReservaHabitacion(){
 		super();
 	}
 
-	public ReservaHabitacion(Date fechaEntrada, Date fechaSalida, int numeroPersonas,Pago p, String hotel,
-			TipoHabitacion tipo,PlanConsumo plan) {
+	public ReservaHabitacion(Date fechaEntrada, Date fechaSalida, int numeroPersonas, String hotel, List<Cliente> cliente) {
 		super();
 		this.fechaEntrada = fechaEntrada;
 		this.fechaSalida = fechaSalida;
 		this.numeroPersonas = numeroPersonas;
 		this.hotel = hotel;
-		this.cliente = cliente;
-		this.tipo=tipo;
-		this.planConsumo=plan;
-		tipoPago=p;
+		this.clientes = cliente;
 	}
+
+
 
 	public Date getFechaEntrada() {
 		return fechaEntrada;
@@ -113,37 +68,11 @@ public class ReservaHabitacion
 		this.hotel = hotel;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
+	public List<Cliente> getClientes() {
+		return clientes;
 	}
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setClientes(List<Cliente> clientes) {
+		this.clientes = clientes;
 	}
-
-	public Pago getTipoPago() {
-		return tipoPago;
-	}
-
-	public void setTipoPago(Pago tipoPago) {
-		this.tipoPago = tipoPago;
-	}
-
-	public TipoHabitacion getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(TipoHabitacion tipo) {
-		this.tipo = tipo;
-	}
-
-	public PlanConsumo getPlanConsumo() {
-		return planConsumo;
-	}
-
-	public void setPlanConsumo(PlanConsumo planConsumo) {
-		this.planConsumo = planConsumo;
-	}
-
 }
-

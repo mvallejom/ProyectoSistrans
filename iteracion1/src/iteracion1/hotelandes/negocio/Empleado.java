@@ -30,10 +30,12 @@ public class Empleado extends Usuario
 		super();
 	}
 
-	public Empleado(Hotel hotel) {
-		super();
-		this.hotel = hotel;
+	public Empleado(String tipoDocumento, long numeroDocumento, String nombre, String correo,Hotel hotel) {
+		super(tipoDocumento, numeroDocumento, nombre, correo);
+		this.hotel=hotel;// TODO Auto-generated constructor stub
 	}
+
+
 
 	public Hotel getHotel() {
 		return hotel;
@@ -46,10 +48,13 @@ public class Empleado extends Usuario
 	//-------------------------------------------
 	//
 	//----------------------------------------
-	public void registrarConsumo(Lugar lugar,Cliente cliente,List<Producto> productos,boolean añadirHabitacion) {
+	public void registrarConsumo(Lugar lugar,Cliente cliente,List<Producto> productos,boolean añadirHabitacion,List<Servicio> servicios) {
 		double totalPagar=0;
 		for(Producto p:productos) {
 			totalPagar+=p.getCosto();
+		}
+		for(Servicio s:servicios) {
+			totalPagar+=s.getCosto();
 		}
 
 		if(añadirHabitacion) {
@@ -61,10 +66,17 @@ public class Empleado extends Usuario
 
 	}
 
-	public void generarReserva(Cliente c, Date fecha, int horas,String tipo) {
-		ReservaServicio r= new ReservaServicio(fecha, horas, tipo, c);
-		Consumo m=new Consumo(c.getHabitacion(), r.generarCosto());
+	public void generarReservaServicio( Date fechaEntrada,Date fechaSalida, int horas,Servicio servicio,Cliente c) throws Exception {
+
+		if(hotel.servicioDisponible(fechaEntrada, fechaSalida, servicio)==true) {
+			ReservaServicio r = new ReservaServicio(fechaEntrada, fechaSalida, c, servicio);
+			Consumo m=new Consumo(c.getHabitacion(), servicio.getCosto());
+		}
+		else {
+			throw new Exception();
+		}
 	}
+
 }
 
 

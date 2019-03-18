@@ -4,35 +4,25 @@ import java.util.Date;
 
 public class ReservaServicio {
 
-	private Date fecha;
-	private int horas; 
-	private double costo;
-	private String nombreServicio;
+	private int id;
+	private Date fechaEntrada;
+	private Date fechaSalida;
 	private Cliente cliente;
 	private Servicio servicio;
 	
 
-
-	public ReservaServicio(Date fecha, int horas,String nombreServicio,Cliente cliente) {
-
-		this.fecha = fecha;
-		this.horas = horas;
-		this.nombreServicio=nombreServicio;
-		this.cliente=cliente;
+	public ReservaServicio( Date fechaEntrada, Date fechaSalida, Cliente cliente,
+			Servicio servicio) {
+		this.fechaEntrada = fechaEntrada;
+		this.fechaSalida = fechaSalida;
+		this.cliente = cliente;
+		this.servicio = servicio;
 		try {
 			servicio.menosDisponibles();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-
-	public String getnombreServicio() {
-		return nombreServicio;
-	}
-
-	public void setnombreServicio(String tipo) {
-		this.nombreServicio = tipo;
 	}
 
 	public Cliente getCliente() {
@@ -43,28 +33,39 @@ public class ReservaServicio {
 		this.cliente = cliente;
 	}
 
-	public Date getFecha() {
-		return fecha;
-	}
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}
-	public int getHoras() {
-		return horas;
-	}
-	public void setHoras(int duracion) {
-		this.horas = duracion;
-	}
-	public double getCosto() {
-		return costo;
-	}
-	public void setCosto(double costo) {
-		this.costo = costo;
+	
+	public int getId() {
+		return id;
 	}
 
-	public double generarCosto() {
-		costo=(horas*servicio.getCosto())+servicio.getCostoAdicional();
-		return costo;
+	public void setId(int id) {
+		this.id = id;
 	}
+
+	public Date getFechaEntrada() {
+		return fechaEntrada;
+	}
+
+	public void setFechaEntrada(Date fechaEntrada) {
+		this.fechaEntrada = fechaEntrada;
+	}
+
+	public Date getFechaSalida() {
+		return fechaSalida;
+	}
+
+	public void setFechaSalida(Date fechaSalida) {
+		this.fechaSalida = fechaSalida;
+	}
+
+	public Servicio getServicio() {
+		return servicio;
+	}
+
+	public void setServicio(Servicio servicio) {
+		this.servicio = servicio;
+	}
+
+	
 
 }

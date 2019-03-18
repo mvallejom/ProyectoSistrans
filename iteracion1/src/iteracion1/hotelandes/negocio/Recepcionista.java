@@ -1,5 +1,6 @@
 package iteracion1.hotelandes.negocio;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,14 +26,15 @@ public class Recepcionista extends Usuario
 	 * <!--  end-user-doc  -->
 	 * @generated
 	 */
-	public Recepcionista(){
-		super();
+
+
+
+	public Recepcionista(String tipoDocumento, long numeroDocumento, String nombre, String correo,Hotel hotel) {
+		super(tipoDocumento, numeroDocumento, nombre, correo);
+		this.hotel = hotel;
+		// TODO Auto-generated constructor stub
 	}
 
-	public Recepcionista(Hotel hotel) {
-		super();
-		this.hotel = hotel;
-	}
 
 	public Hotel getHotel() {
 		return hotel;
@@ -42,52 +44,41 @@ public class Recepcionista extends Usuario
 		this.hotel = hotel;
 	}
 
-	public void checkIn(String tipoDocumento, long numeroDocumento, String nombre, String correo,boolean reserva, ReservaHabitacion reservaHabitacion,TipoHabitacion tipo, int capacidad) {
-		Cliente c=null;
-		Habitacion hab=null;
-		if(reserva) {
-			hab=hotel.buscarHabitacion(reservaHabitacion.getTipo(), reservaHabitacion.getNumeroPersonas());
-			c =new Cliente(tipoDocumento, numeroDocumento, nombre, correo, hab);
+	//RF 9
+	public void checkIn( ReservaHabitacion reservaHabitacion,Habitacion h) {
+		h.setClientes(reservaHabitacion.getClientes());
+		for (Cliente c:reservaHabitacion.getClientes()) {
+			List<Consumo> consumos=new ArrayList();
+			c.setConsumos(consumos);
 		}
-		else {
-			hab=hotel.buscarHabitacion(tipo, capacidad);
-			c =new Cliente(tipoDocumento, numeroDocumento, nombre, correo, hab);
-		}
-		hotel.adicionarCliente(c);
 	}
-	
-	
+
 	public boolean checkOut(Cliente c) throws Exception {
-		
+
 		boolean pazYsalvo=false;
 		double totalPagar=c.getHabitacion().getCuenta();
 		c.pagar(totalPagar);
-		if(c.getHabitacion().getCuenta()>0&& !prestamosDevueltos(c)) {
+		if(c.getHabitacion().getCuenta()==0) {
+			pazYsalvo=true;		
+			}
+		else {
 			throw new Exception();
 		}
-		else {
-			pazYsalvo=true;
-		}
 		return pazYsalvo;
+
+	}
+	
+public void generarReservaServicio( Date fechaEntrada,Date fechaSalida, int horas,Servicio servicio,Cliente c) throws Exception {
 		
-	}
-	
-	public boolean prestamosDevueltos(Cliente c) {
-		boolean resp=true;
-		for(Prestamo p: c.getPrestamos()) {
-			if(!p.isDevuelto()){
-				resp=false;
-			}
-			
+		if(hotel.servicioDisponible(fechaEntrada, fechaSalida, servicio)==true) {
+			ReservaServicio r = new ReservaServicio(fechaEntrada, fechaSalida, c, servicio);
+			Consumo m=new Consumo(c.getHabitacion(), servicio.getCosto());
 		}
-		return resp;
+		else {
+			throw new Exception();
+			}
 	}
-	
-	
-	public void generarReserva(Cliente c, Date fecha, int horas,String tipo) {
-		ReservaServicio r= new ReservaServicio(fecha, horas, tipo, c);
-		Consumo m=new Consumo(c.getHabitacion(), r.generarCosto());
-	}
+
 
 
 }

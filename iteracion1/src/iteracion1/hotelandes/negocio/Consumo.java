@@ -75,6 +75,7 @@ public class Consumo
 		this.productos = productos;
 	}
 	
+	
 	public Consumo(Habitacion habitacion,double costo) {
 		
 		this.habitacion = habitacion;

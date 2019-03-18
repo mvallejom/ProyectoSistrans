@@ -13,102 +13,32 @@ import java.util.Set;
 
 public class Habitacion
 {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-
+	
 	private String numero;
 
+	private String descripcion; 
+	
 	private boolean disponible;
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-
+	
 	private int capacidad;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
 
 	private TipoHabitacion tipoHabitacion;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
 
-	private List<String> servicios;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
 
 	private double costoNoche;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-
 	private double cuenta;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
 
 	private Hotel hotel;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
 
 	private List<Consumo> consumo;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-
 	private List<Cliente> clientes;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
 
 	private PlanConsumo planConsumo;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 */
 	public Habitacion(){
 		super();
 	}
@@ -121,7 +51,6 @@ public class Habitacion
 		this.numero = numero;
 		this.capacidad = capacidad;
 		this.tipoHabitacion = tipoHabitacion;
-		this.servicios = servicios;
 		this.costoNoche = costoNoche;
 		this.cuenta = cuenta;
 		this.hotel = hotel;
@@ -156,13 +85,7 @@ public class Habitacion
 		this.tipoHabitacion = tipoHabitacion;
 	}
 
-	public List<String> getServicios() {
-		return servicios;
-	}
-
-	public void setServicios(List<String> servicios) {
-		this.servicios = servicios;
-	}
+	
 
 	public double getCostoNoche() {
 		return costoNoche;

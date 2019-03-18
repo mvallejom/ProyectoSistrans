@@ -46,7 +46,7 @@ public class PlanConsumo
 	 * @ordered
 	 */
 	
-	private List<Habitacion> habitaciones;
+	private Habitacion habitaciones;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -58,7 +58,7 @@ public class PlanConsumo
 	}
 
 	
-	public PlanConsumo(String tipoPlan, String descripcion, Hotel hotel, List<Habitacion> habitaciones) {
+	public PlanConsumo(String tipoPlan, String descripcion, Hotel hotel, Habitacion habitaciones) {
 		super();
 		this.tipoPlan = tipoPlan;
 		this.descripcion = descripcion;
@@ -91,11 +91,11 @@ public class PlanConsumo
 		this.hotel = hotel;
 	}
 
-	public List<Habitacion> getHabitaciones() {
+	public Habitacion getHabitaciones() {
 		return habitaciones;
 	}
 
-	public void setHabitaciones(List<Habitacion> habitaciones) {
+	public void setHabitaciones(Habitacion habitaciones) {
 		this.habitaciones = habitaciones;
 	}
 

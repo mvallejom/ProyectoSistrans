@@ -28,10 +28,13 @@ public class Administrador extends Usuario
 	}
 	
 
-	public Administrador(Hotel hotel) {
-		super();
+	public Administrador(String tipoDocumento, long numeroDocumento, String nombre, String correo,Hotel hotel) {
+		super(tipoDocumento, numeroDocumento, nombre, correo);
 		this.hotel = hotel;
+		// TODO Auto-generated constructor stub
 	}
+
+
 
 
 	public Hotel getHotel() {

@@ -21,8 +21,6 @@ public class Cliente extends Usuario
 	 */
 	
 	private List<ReservaHabitacion> reservasHabitacion;
-
-	private List<Prestamo>prestamos;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!--  end-user-doc  -->
@@ -31,16 +29,84 @@ public class Cliente extends Usuario
 	 */
 	
 	private List<ReservaServicio> servicios;
-
+ private List<Consumo> consumos;
 	
+	public List<Consumo> getConsumos() {
+	return consumos;
+}
+
+
+
+public void setConsumos(List<Consumo> consumos) {
+	this.consumos = consumos;
+}
+
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!--  end-user-doc  -->
 	 * @generated
 	 * @ordered
 	 */
+	private boolean estaEnElHotel;
 	
+	public boolean isEstaEnElHotel() {
+		return estaEnElHotel;
+	}
+
+
+
+	public void setEstaEnElHotel(boolean estaEnElHotel) {
+		this.estaEnElHotel = estaEnElHotel;
+	}
+
+
 	private Habitacion habitacion;
+
+	private Hotel hotel;
+	
+	private Consumo consumo;
+	
+	
+	
+	public Cliente(String tipoDocumento, long numeroDocumento, String nombre, String correo,Habitacion hab,Hotel h) {
+		super(tipoDocumento,numeroDocumento,nombre,correo);
+		this.habitacion=hab;
+		hotel=h;
+		estaEnElHotel=false;
+	}
+
+	
+	
+	public List<ReservaServicio> getServicios() {
+		return servicios;
+	}
+
+
+	public void setServicios(List<ReservaServicio> servicios) {
+		this.servicios = servicios;
+	}
+
+
+	public Hotel getHotel() {
+		return hotel;
+	}
+
+
+	public void setHotel(Hotel hotel) {
+		this.hotel = hotel;
+	}
+
+
+	public Consumo getConsumo() {
+		return consumo;
+	}
+
+
+	public void setConsumo(Consumo consumo) {
+		this.consumo = consumo;
+	}
+
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -49,10 +115,6 @@ public class Cliente extends Usuario
 	 */
 	
 
-	public Cliente(String tipoDocumento, long numeroDocumento, String nombre, String correo,Habitacion hab) {
-		super(tipoDocumento,numeroDocumento,nombre,correo);
-		this.habitacion=hab;
-	}
 
 
 	public List<ReservaHabitacion> getReservasHabitacion() {
@@ -79,22 +141,19 @@ public class Cliente extends Usuario
 	public void setHabitacion(Habitacion habitacion) {
 		this.habitacion = habitacion;
 	}
+
 	
-	
-	
-	public List<Prestamo> getPrestamos() {
-		return prestamos;
-	}
-
-
-	public void setPrestamos(List<Prestamo> prestamos) {
-		this.prestamos = prestamos;
-	}
-
-
-	public void hacerReserva(Date fechaEntrada, Date fechaSalida,int numPersonas,Pago pago,String nombreHotel,TipoHabitacion tipo,PlanConsumo plan) {
-		ReservaHabitacion reserva=new ReservaHabitacion(fechaEntrada, fechaSalida, numPersonas, pago, nombreHotel, tipo, plan);
+	/**
+	 * RF 7
+	 */
+	public void hacerReservaAlojamiento(Date fechaEntrada, Date fechaSalida,int numPersonas	,String nombreHotel,List<Cliente>clientes) {
+		ReservaHabitacion reserva = new ReservaHabitacion(fechaEntrada, fechaSalida, numPersonas, nombreHotel, clientes);
 		reservasHabitacion.add(reserva);
+		for (Cliente c:reserva.getClientes())
+		{
+		hotel.adicionarCliente(this);
+		}
+		hotel.getReservaHabitacion().add(reserva);
 		
 	}
 	
@@ -102,10 +161,22 @@ public class Cliente extends Usuario
 		this.getHabitacion().setCuenta(0);
 	}
 	
-	public void generarReserva( Date fecha, int horas,String tipo) {
-		ReservaServicio r= new ReservaServicio(fecha, horas, tipo, this);
-		Consumo m=new Consumo(getHabitacion(), r.generarCosto());
+	
+	/**
+	 * RF 8
+	 * @throws Exception 
+	 */
+	public void generarReservaServicio( Date fechaEntrada,Date fechaSalida, int horas,Servicio servicio) throws Exception {
+		
+		if(hotel.servicioDisponible(fechaEntrada, fechaSalida, servicio)==true) {
+			ReservaServicio r = new ReservaServicio(fechaEntrada, fechaSalida, this, servicio);
+			Consumo m=new Consumo(getHabitacion(), servicio.getCosto());
+		}
+		else {
+			throw new Exception();
+			}
 	}
 
+	
 }
 
