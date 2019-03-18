@@ -3,7 +3,7 @@ package persistencia;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
-import javax.jdo.annotations.Query;
+import javax.jdo.Query;
 
 import iteracion1.hotelandes.negocio.PlanConsumo;
 
@@ -40,37 +40,35 @@ class SQLPlanConsumo
 	}
 	
 	/**
-	 * Crea y ejecuta la sentencia SQL para adicionar un PlanConsumo a la base de datos de Parranderos
+	 * Crea y ejecuta la sentencia SQL para adicionar un PlanConsumo a la base de datos de Hotel
 	 * @param pm - El manejador de persistencia
-	 * @param idPlanConsumo - El identificador del PlanConsumo
-	 * @param nombre - El nombre del PlanConsumo
-	 * @param ciudad - La ciudad del PlanConsumo
-	 * @param presupuesto - El presupuesto del PlanConsumo (ALTO, MEDIO, BAJO)
-	 * @param sedes - El número de sedes del PlanConsumo
+	 * @param tipoPlan - Nombre del plan
+	 * @param descripcion - Descripcion del plan
+	 * @param idHotel - Id del hotel
 	 * @return El número de tuplas insertadas
 	 */
-	public long adicionarPlanConsumo (PersistenceManager pm, long idPlanConsumo, String nombre, String ciudad, String presupuesto, int sedes) 
+	public long adicionarPlanConsumo (PersistenceManager pm, String tipoPlan, String descripcion, Long idHotel) 
 	{
-        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaPlanConsumo () + "(id, nombre, ciudad, presupuesto, cantsedes) values (?, ?, ?, ?, ?)");
-        q.setParameters(idPlanConsumo, nombre, ciudad, presupuesto, sedes);
+        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaPlanConsumo () + "(tipo_plan, descripcion, id_hotel) values (?, ?, ?)");
+        q.setParameters(tipoPlan, descripcion, idHotel);
         return (long) q.executeUnique();
 	}
 
 	/**
-	 * Crea y ejecuta la sentencia SQL para eliminar PlanConsumoES de la base de datos de Parranderos, por su nombre
+	 * Crea y ejecuta la sentencia SQL para eliminar PlanConsumoES de la base de datos de Hotel, por su nombre
 	 * @param pm - El manejador de persistencia
-	 * @param nombrePlanConsumo - El nombre del PlanConsumo
+	 * @param tipoPlan - El nombre del PlanConsumo
 	 * @return EL número de tuplas eliminadas
 	 */
-	public long eliminarPlanConsumoesPorNombre (PersistenceManager pm, String nombrePlanConsumo)
+	public long eliminarPlanConsumoesPorNombre (PersistenceManager pm, String tipoPlan)
 	{
         Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaPlanConsumo () + " WHERE nombre = ?");
-        q.setParameters(nombrePlanConsumo);
+        q.setParameters(tipoPlan);
         return (long) q.executeUnique();
 	}
 
 	/**
-	 * Crea y ejecuta la sentencia SQL para eliminar UN PlanConsumo de la base de datos de Parranderos, por su identificador
+	 * Crea y ejecuta la sentencia SQL para eliminar UN PlanConsumo de la base de datos de hotel, por su identificador
 	 * @param pm - El manejador de persistencia
 	 * @param idPlanConsumo - El identificador del PlanConsumo
 	 * @return EL número de tuplas eliminadas
@@ -84,7 +82,7 @@ class SQLPlanConsumo
 
 	/**
 	 * Crea y ejecuta la sentencia SQL para encontrar la información de UN PlanConsumo de la 
-	 * base de datos de Parranderos, por su identificador
+	 * base de datos de hotel, por su identificador
 	 * @param pm - El manejador de persistencia
 	 * @param idPlanConsumo - El identificador del PlanConsumo
 	 * @return El objeto PlanConsumo que tiene el identificador dado
@@ -99,44 +97,15 @@ class SQLPlanConsumo
 
 	/**
 	 * Crea y ejecuta la sentencia SQL para encontrar la información de LOS PlanConsumoES de la 
-	 * base de datos de Parranderos, por su nombre
-	 * @param pm - El manejador de persistencia
-	 * @param nombrePlanConsumo - El nombre de PlanConsumo buscado
-	 * @return Una lista de objetos PlanConsumo que tienen el nombre dado
-	 */
-	public List<PlanConsumo> darPlanConsumoesPorNombre (PersistenceManager pm, String nombrePlanConsumo) 
-	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaPlanConsumo () + " WHERE nombre = ?");
-		q.setResultClass(PlanConsumo.class);
-		q.setParameters(nombrePlanConsumo);
-		return (List<PlanConsumo>) q.executeList();
-	}
-
-	/**
-	 * Crea y ejecuta la sentencia SQL para encontrar la información de LOS PlanConsumoES de la 
-	 * base de datos de Parranderos
+	 * base de datos de hotel
 	 * @param pm - El manejador de persistencia
 	 * @return Una lista de objetos PlanConsumo
 	 */
-	public List<PlanConsumo> darPlanConsumoes (PersistenceManager pm)
+	public List<PlanConsumo> darPlanConsumos (PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaPlanConsumo ());
 		q.setResultClass(PlanConsumo.class);
 		return (List<PlanConsumo>) q.executeList();
-	}
-
-	/**
-	 * Crea y ejecuta la sentencia SQL para aumentar en uno el número de sedes de los PlanConsumoes de la 
-	 * base de datos de Parranderos
-	 * @param pm - El manejador de persistencia
-	 * @param ciudad - La ciudad a la cual se le quiere realizar el proceso
-	 * @return El número de tuplas modificadas
-	 */
-	public long aumentarSedesPlanConsumoesCiudad (PersistenceManager pm, String ciudad)
-	{
-        Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaPlanConsumo () + " SET cantsedes = cantsedes + 1 WHERE ciudad = ?");
-        q.setParameters(ciudad);
-        return (long) q.executeUnique();
 	}
 	
 }

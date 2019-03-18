@@ -7,10 +7,10 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-import uniandes.isis2304.parranderos.negocio.Bar;
+import iteracion1.hotelandes.negocio.Producto;
 
 /**
- * Clase que encapsula los métodos que hacen acceso a la base de datos para el concepto BAR de Parranderos
+ * Clase que encapsula los métodos que hacen acceso a la base de datos para el concepto Producto de hotel
  * Nótese que es una clase que es sólo conocida en el paquete de persistencia
  * 
  * @author Germán Bravo
@@ -24,7 +24,7 @@ class SQLProducto
 	 * Cadena que representa el tipo de consulta que se va a realizar en las sentencias de acceso a la base de datos
 	 * Se renombra acá para facilitar la escritura de las sentencias
 	 */
-	private final static String SQL = PersistenciaParranderos.SQL;
+	private final static String SQL = PersistenciaHotel.SQL;
 
 	/* ****************************************************************
 	 * 			Atributos
@@ -32,7 +32,7 @@ class SQLProducto
 	/**
 	 * El manejador de persistencia general de la aplicación
 	 */
-	private PersistenciaParranderos pp;
+	private PersistenciaHotel pp;
 
 	/* ****************************************************************
 	 * 			Métodos
@@ -42,109 +42,90 @@ class SQLProducto
 	 * Constructor
 	 * @param pp - El Manejador de persistencia de la aplicación
 	 */
-	public SQLBar (PersistenciaParranderos pp)
+	public SQLProducto(PersistenciaHotel pp)
 	{
 		this.pp = pp;
 	}
 	
 	/**
-	 * Crea y ejecuta la sentencia SQL para adicionar un BAR a la base de datos de Parranderos
+	 * Crea y ejecuta la sentencia SQL para adicionar un Producto a la base de datos de hotel
 	 * @param pm - El manejador de persistencia
-	 * @param idBar - El identificador del bar
-	 * @param nombre - El nombre del bar
-	 * @param ciudad - La ciudad del bar
-	 * @param presupuesto - El presupuesto del bar (ALTO, MEDIO, BAJO)
-	 * @param sedes - El número de sedes del bar
 	 * @return El número de tuplas insertadas
 	 */
-	public long adicionarBar (PersistenceManager pm, long idBar, String nombre, String ciudad, String presupuesto, int sedes) 
+	public long adicionarProducto (PersistenceManager pm, String nombre, int costo, long idServicio) 
 	{
-        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaBar () + "(id, nombre, ciudad, presupuesto, cantsedes) values (?, ?, ?, ?, ?)");
-        q.setParameters(idBar, nombre, ciudad, presupuesto, sedes);
+        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaProducto () + "(nombre, costo, id_servicio) values (?, ?, ?)");
+        q.setParameters(nombre, costo, idServicio);
         return (long) q.executeUnique();
 	}
 
 	/**
-	 * Crea y ejecuta la sentencia SQL para eliminar BARES de la base de datos de Parranderos, por su nombre
+	 * Crea y ejecuta la sentencia SQL para eliminar ProductoES de la base de datos de hotel, por su nombre
 	 * @param pm - El manejador de persistencia
-	 * @param nombreBar - El nombre del bar
+	 * @param nombreProducto - El nombre del Producto
 	 * @return EL número de tuplas eliminadas
 	 */
-	public long eliminarBaresPorNombre (PersistenceManager pm, String nombreBar)
+	public long eliminarProductoesPorNombre (PersistenceManager pm, String nombreProducto)
 	{
-        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaBar () + " WHERE nombre = ?");
-        q.setParameters(nombreBar);
+        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaProducto () + " WHERE nombre = ?");
+        q.setParameters(nombreProducto);
         return (long) q.executeUnique();
 	}
 
 	/**
-	 * Crea y ejecuta la sentencia SQL para eliminar UN BAR de la base de datos de Parranderos, por su identificador
+	 * Crea y ejecuta la sentencia SQL para eliminar UN Producto de la base de datos de hotel, por su identificador
 	 * @param pm - El manejador de persistencia
-	 * @param idBar - El identificador del bar
+	 * @param idProducto - El identificador del Producto
 	 * @return EL número de tuplas eliminadas
 	 */
-	public long eliminarBarPorId (PersistenceManager pm, long idBar)
+	public long eliminarProductoPorId (PersistenceManager pm, long idProducto)
 	{
-        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaBar () + " WHERE id = ?");
-        q.setParameters(idBar);
+        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaProducto () + " WHERE id = ?");
+        q.setParameters(idProducto);
         return (long) q.executeUnique();
 	}
 
 	/**
-	 * Crea y ejecuta la sentencia SQL para encontrar la información de UN BAR de la 
-	 * base de datos de Parranderos, por su identificador
+	 * Crea y ejecuta la sentencia SQL para encontrar la información de UN Producto de la 
+	 * base de datos de hotel, por su identificador
 	 * @param pm - El manejador de persistencia
-	 * @param idBar - El identificador del bar
-	 * @return El objeto BAR que tiene el identificador dado
+	 * @param idProducto - El identificador del Producto
+	 * @return El objeto Producto que tiene el identificador dado
 	 */
-	public Bar darBarPorId (PersistenceManager pm, long idBar) 
+	public Producto darProductoPorId (PersistenceManager pm, long idProducto) 
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaBar () + " WHERE id = ?");
-		q.setResultClass(Bar.class);
-		q.setParameters(idBar);
-		return (Bar) q.executeUnique();
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaProducto () + " WHERE id = ?");
+		q.setResultClass(Producto.class);
+		q.setParameters(idProducto);
+		return (Producto) q.executeUnique();
 	}
 
 	/**
-	 * Crea y ejecuta la sentencia SQL para encontrar la información de LOS BARES de la 
-	 * base de datos de Parranderos, por su nombre
+	 * Crea y ejecuta la sentencia SQL para encontrar la información de LOS ProductoES de la 
+	 * base de datos de hotel, por su nombre
 	 * @param pm - El manejador de persistencia
-	 * @param nombreBar - El nombre de bar buscado
-	 * @return Una lista de objetos BAR que tienen el nombre dado
+	 * @param nombreProducto - El nombre de Producto buscado
+	 * @return Una lista de objetos Producto que tienen el nombre dado
 	 */
-	public List<Bar> darBaresPorNombre (PersistenceManager pm, String nombreBar) 
+	public List<Producto> darProductosPorNombre (PersistenceManager pm, String nombreProducto) 
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaBar () + " WHERE nombre = ?");
-		q.setResultClass(Bar.class);
-		q.setParameters(nombreBar);
-		return (List<Bar>) q.executeList();
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaProducto () + " WHERE nombre = ?");
+		q.setResultClass(Producto.class);
+		q.setParameters(nombreProducto);
+		return (List<Producto>) q.executeList();
 	}
 
 	/**
-	 * Crea y ejecuta la sentencia SQL para encontrar la información de LOS BARES de la 
-	 * base de datos de Parranderos
+	 * Crea y ejecuta la sentencia SQL para encontrar la información de LOS ProductoES de la 
+	 * base de datos de hotel
 	 * @param pm - El manejador de persistencia
-	 * @return Una lista de objetos BAR
+	 * @return Una lista de objetos Producto
 	 */
-	public List<Bar> darBares (PersistenceManager pm)
+	public List<Producto> darProductos (PersistenceManager pm)
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaBar ());
-		q.setResultClass(Bar.class);
-		return (List<Bar>) q.executeList();
-	}
-
-	/**
-	 * Crea y ejecuta la sentencia SQL para aumentar en uno el número de sedes de los bares de la 
-	 * base de datos de Parranderos
-	 * @param pm - El manejador de persistencia
-	 * @param ciudad - La ciudad a la cual se le quiere realizar el proceso
-	 * @return El número de tuplas modificadas
-	 */
-	public long aumentarSedesBaresCiudad (PersistenceManager pm, String ciudad)
-	{
-        Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaBar () + " SET cantsedes = cantsedes + 1 WHERE ciudad = ?");
-        q.setParameters(ciudad);
-        return (long) q.executeUnique();
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaProducto ());
+		q.setResultClass(Producto.class);
+		return (List<Producto>) q.executeList();
 	}
 	
 }
