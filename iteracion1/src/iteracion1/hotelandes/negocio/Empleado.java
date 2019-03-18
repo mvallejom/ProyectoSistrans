@@ -58,7 +58,7 @@ public class Empleado extends Usuario
 		}
 
 		if(añadirHabitacion) {
-			Consumo m=new Consumo(lugar, cliente.getHabitacion(), productos);
+			Consumo m=new Consumo(lugar, cliente.getHabitacion(), productos,new Date());
 		}
 		else {
 			cliente.pagar(totalPagar);

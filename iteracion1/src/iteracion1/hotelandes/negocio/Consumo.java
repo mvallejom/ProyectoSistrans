@@ -1,4 +1,5 @@
 package iteracion1.hotelandes.negocio;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -20,6 +21,17 @@ public class Consumo
 	 */
 	
 	private int id;
+
+	private Date fechaConsumo;
+	
+	public Date getFechaConsumo() {
+		return fechaConsumo;
+	}
+
+
+	public void setFechaConsumo(Date fechaConsumo) {
+		this.fechaConsumo = fechaConsumo;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -67,12 +79,12 @@ public class Consumo
 	}
 	
 
-	public Consumo( Lugar lugar, Habitacion habitacion, List<Producto> productos) {
-		super();
+	public Consumo( Lugar lugar, Habitacion habitacion, List<Producto> productos,Date fecha) {
 		this.id = id;
 		this.lugar = lugar;
 		this.habitacion = habitacion;
 		this.productos = productos;
+		this.fechaConsumo=fecha;
 	}
 	
 	

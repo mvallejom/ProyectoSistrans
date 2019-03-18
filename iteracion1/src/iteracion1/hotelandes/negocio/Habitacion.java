@@ -1,5 +1,6 @@
 package iteracion1.hotelandes.negocio;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -150,7 +151,7 @@ public class Habitacion
 
 
 	public void AgregarConsumoDeHabitacion(List<Producto> prod) {
-		Consumo con=new Consumo(Lugar.HABIATCION, this, prod)	;
+		Consumo con=new Consumo(Lugar.HABIATCION, this, prod,new Date())	;
 		cuenta+=con.calcularCostoTotal();
 	}
 
