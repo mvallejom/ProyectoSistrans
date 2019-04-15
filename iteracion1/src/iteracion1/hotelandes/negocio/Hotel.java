@@ -36,7 +36,7 @@ public class Hotel
 	private List<ReservaServicio> reservasServicio;
 
 	private List<Cliente> clientes;
-
+ int id;
 
 
 	public Hotel(String nombre, List<Habitacion> habitaciones, List<PlanConsumo> planesConsumo,
@@ -151,6 +151,13 @@ public class Hotel
 		return clientes;
 	}
 
+	public int getId() {
+		return this.id;
+	}
+	
+	public void setId(int id) {
+		this.id=id;
+	}
 	public void setClientes(List<Cliente> clientes) {
 		this.clientes = clientes;
 	}
@@ -194,6 +201,17 @@ public class Hotel
 		}
 		if(cont<s.getCapacidad()) {
 			resp= true;
+		}
+		return resp;
+	}
+
+	public Habitacion darHabitacionPorNumero(int numero) {
+		Habitacion resp=null;
+		for(Habitacion h:habitaciones) {
+			if(h.getNumero()==numero) {
+				resp= h;
+
+			}
 		}
 		return resp;
 	}

@@ -63,19 +63,19 @@ public void setConsumos(List<Consumo> consumos) {
 
 	private Habitacion habitacion;
 
-	private Hotel hotel;
+private Hotel hotel;
 	
 	private Consumo consumo;
 	
 	
 	
-	public Cliente(String tipoDocumento, long numeroDocumento, String nombre, String correo,Habitacion hab,Hotel h) {
-		super(tipoDocumento,numeroDocumento,nombre,correo);
-		this.habitacion=hab;
-		hotel=h;
+	public Cliente(String tipoDocumento, Long numeroDocumento, String nombre, String correo,int  hab) {
+		this.habitacion=hotel.darHabitacionPorNumero(hab);
+		
 		estaEnElHotel=false;
 	}
 
+	
 	
 	
 	public List<ReservaServicio> getServicios() {
@@ -150,9 +150,10 @@ public void setConsumos(List<Consumo> consumos) {
 		ReservaHabitacion reserva = new ReservaHabitacion(fechaEntrada, fechaSalida, numPersonas, nombreHotel, clientes);
 		reservasHabitacion.add(reserva);
 		for (Cliente c:reserva.getClientes())
-		{
+		{	
 		hotel.adicionarCliente(this);
 		}
+		
 		hotel.getReservaHabitacion().add(reserva);
 		
 	}

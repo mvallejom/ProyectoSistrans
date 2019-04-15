@@ -25,10 +25,10 @@ class SQLInfoConsumo
 	}
 	
 	
-	public long adicionarInfoInfoConsumo (PersistenceManager pm, long idInfoConsumo, String nombre, double costoTotal, int idserv, int doc,Date fecha) 
+	public long adicionarInfoInfoConsumo (PersistenceManager pm, long idInfoConsumo, String nombre, long idProducto, long idserv) 
 	{
-        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaInfoConsumo () + "(id, nombre, costo, id_servicio) values (?, ?, ?, ?)");
-        q.setParameters(idInfoConsumo, nombre, costoTotal, idserv);
+        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaInfoConsumo () + "(id, cantidad, id_producto, id_servicio) values (?, ?, ?, ?)");
+        q.setParameters(idInfoConsumo, nombre, idProducto, idserv);
         return (long) q.executeUnique();
 	}
 

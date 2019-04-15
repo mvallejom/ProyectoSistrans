@@ -40,7 +40,7 @@ public class Consumo
 	 * @ordered
 	 */
 	
-	private Lugar lugar;
+	private String lugar;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -79,10 +79,10 @@ public class Consumo
 	}
 	
 
-	public Consumo( Lugar lugar, Habitacion habitacion, List<Producto> productos,Date fecha) {
+	public Consumo( String lugar, Habitacion h, List<Producto> productos,Date fecha) {
 		this.id = id;
 		this.lugar = lugar;
-		this.habitacion = habitacion;
+		this.habitacion = h;
 		this.productos = productos;
 		this.fechaConsumo=fecha;
 	}
@@ -103,11 +103,11 @@ public class Consumo
 		this.id = id;
 	}
 
-	public Lugar getLugar() {
+	public String getLugar() {
 		return lugar;
 	}
 
-	public void setLugar(Lugar lugar) {
+	public void setLugar(String lugar) {
 		this.lugar = lugar;
 	}
 

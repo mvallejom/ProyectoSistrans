@@ -37,7 +37,7 @@ class SQLUtil
         Query qReservaHabitacion = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaReservaHabitacion ());
         Query qReservaServicio = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaReservaServicio ());
         Query qRol = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaRol ());
-        Query qServicioHotel = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaServicioHotel ());
+        Query qServicioHotel = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaServicio ());
         Query qTipoHabitacion = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaTipoHabitacion ());
         Query qUsuario = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaUsuario ());
         

@@ -16,6 +16,17 @@ public class Servicio {
 	private List<ReservaServicio> reservas;
 	private InfoConsumo infoconsumo ;
 	private int disponible;
+	private long id;
+
+	public long getId() {
+		return id;
+	}
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 
 	public Servicio(String nombre, Date horaApertura, Date horaCierre, String descripcion, Hotel hotel, double costo,
 			int capacidad, Lugar lugar) {

@@ -24,19 +24,19 @@ class SQLHabitacion
 	}
 	
 	
-	public long adicionarHabitacion (PersistenceManager pm, int num, String descrp, int cap, int tipo, double costo ,double cuenta,int idh,int idcons) 
+	public int adicionarHabitacion (PersistenceManager pm, int num, String descrp, int cap, int tipo, double costo ,int idh,int idPlancons) 
 	{
         Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaHabitacion () + "(numero, descripcion, capacidad, tipo_habitacion, costo_noche,cuenta,id_hotel,plan_consumo) values (?, ?, ?, ?, ?,?,?,?)");
-        q.setParameters(num, descrp, cap, tipo, costo,cuenta,idh,idcons);
-        return (long) q.executeUnique();
+        q.setParameters(num, descrp, cap, tipo, costo,0,idh,idPlancons);
+        return (int) q.executeUnique();
 	}
 
 	
-	public long eliminarHabitacionPornumero (PersistenceManager pm, int idHabitacion)
+	public int eliminarHabitacionPornumero (PersistenceManager pm, int idHabitacion)
 	{
         Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaHabitacion () + " WHERE numero = ?");
         q.setParameters(idHabitacion);
-        return (long) q.executeUnique();
+        return (int) q.executeUnique();
 	}
 
 	

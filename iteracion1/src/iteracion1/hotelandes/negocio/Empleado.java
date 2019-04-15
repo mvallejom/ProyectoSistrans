@@ -48,7 +48,7 @@ public class Empleado extends Usuario
 	//-------------------------------------------
 	//
 	//----------------------------------------
-	public void registrarConsumo(Lugar lugar,Cliente cliente,List<Producto> productos,boolean añadirHabitacion,List<Servicio> servicios) {
+	public void registrarConsumo(String lugar,Cliente cliente,List<Producto> productos,boolean añadirHabitacion,List<Servicio> servicios) {
 		double totalPagar=0;
 		for(Producto p:productos) {
 			totalPagar+=p.getCosto();
