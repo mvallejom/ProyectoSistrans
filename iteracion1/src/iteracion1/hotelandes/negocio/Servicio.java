@@ -1,12 +1,11 @@
 package iteracion1.hotelandes.negocio;
 
-import java.util.Date;
 import java.util.List;
 
 public class Servicio {
 	private String nombre;
-	private Date horaApertura;
-	private Date horaCierre;
+	private String horaApertura;
+	private String horaCierre;
 	private String descripcion;
 	private Hotel hotel;
 	private double  costo;
@@ -16,8 +15,19 @@ public class Servicio {
 	private List<ReservaServicio> reservas;
 	private InfoConsumo infoconsumo ;
 	private int disponible;
+	private long id;
 
-	public Servicio(String nombre, Date horaApertura, Date horaCierre, String descripcion, Hotel hotel, double costo,
+	public long getId() {
+		return id;
+	}
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+
+	public Servicio(String nombre, String horaApertura, String horaCierre, String descripcion, Hotel hotel, double costo,
 			int capacidad, Lugar lugar) {
 		super();
 		this.nombre = nombre;
@@ -92,22 +102,22 @@ public class Servicio {
 
 
 
-	public Date getHoraApertura() {
+	public String getHoraApertura() {
 		return horaApertura;
 	}
 
 
-	public void setHoraApertura(Date horaApertura) {
+	public void setHoraApertura(String horaApertura) {
 		this.horaApertura = horaApertura;
 	}
 
 
-	public Date getHoraCierre() {
+	public String getHoraCierre() {
 		return horaCierre;
 	}
 
 
-	public void setHoraCierre(Date horaCierre) {
+	public void setHoraCierre(String horaCierre) {
 		this.horaCierre = horaCierre;
 	}
 

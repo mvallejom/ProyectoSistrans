@@ -2,7 +2,6 @@ package persistencia;
 
 
 
-import java.util.Date;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
@@ -24,9 +23,9 @@ class SQLLugar
 	}
 	
 	
-	public long adicionarLugar (PersistenceManager pm, long idLugar, String nombre, double costoTotal, int numH, int doc,Date fecha) 
+	public long adicionarLugar (PersistenceManager pm, long idLugar, String nombre) 
 	{
-        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaLugar () + "(id, nombreo)) values (?, ?)");
+        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaLugar () + "(id, nombre)) values (?, ?)");
         q.setParameters(idLugar, nombre);
         return (long) q.executeUnique();
 	}

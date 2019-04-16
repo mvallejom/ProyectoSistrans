@@ -2,7 +2,6 @@ package persistencia;
 
 
 
-import java.util.Date;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
@@ -24,10 +23,10 @@ class SQLHotel
 	}
 	
 	
-	public long adicionarHotel (PersistenceManager pm, long idHotel, String lugar, double costoTotal, int numH, int doc,Date fecha) 
+	public long adicionarHotel (PersistenceManager pm, long idHotel, String nombre) 
 	{
-        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaHotel () + "(id, lugar, costo_total, numero_habitacion, documento_cliente,fecha) values (?, ?, ?, ?, ?)");
-        q.setParameters(idHotel, lugar, costoTotal, numH, doc,fecha);
+        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaHotel () + "(id, nombre) values (?, ?)");
+        q.setParameters(idHotel, nombre);
         return (long) q.executeUnique();
 	}
 

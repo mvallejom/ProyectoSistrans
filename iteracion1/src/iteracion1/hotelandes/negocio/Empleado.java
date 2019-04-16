@@ -1,6 +1,5 @@
 package iteracion1.hotelandes.negocio;
 
-import java.util.Date;
 import java.util.List;
 
 
@@ -48,7 +47,7 @@ public class Empleado extends Usuario
 	//-------------------------------------------
 	//
 	//----------------------------------------
-	public void registrarConsumo(Lugar lugar,Cliente cliente,List<Producto> productos,boolean añadirHabitacion,List<Servicio> servicios) {
+	public void registrarConsumo(String lugar,Cliente cliente,List<Producto> productos,boolean añadirHabitacion,List<Servicio> servicios) {
 		double totalPagar=0;
 		for(Producto p:productos) {
 			totalPagar+=p.getCosto();
@@ -58,7 +57,7 @@ public class Empleado extends Usuario
 		}
 
 		if(añadirHabitacion) {
-			Consumo m=new Consumo(lugar, cliente.getHabitacion(), productos,new Date());
+			Consumo m=new Consumo(lugar, cliente.getHabitacion(), productos,new String());
 		}
 		else {
 			cliente.pagar(totalPagar);
@@ -66,7 +65,7 @@ public class Empleado extends Usuario
 
 	}
 
-	public void generarReservaServicio( Date fechaEntrada,Date fechaSalida, int horas,Servicio servicio,Cliente c) throws Exception {
+	public void generarReservaServicio( String fechaEntrada,String fechaSalida, int horas,Servicio servicio,Cliente c) throws Exception {
 
 		if(hotel.servicioDisponible(fechaEntrada, fechaSalida, servicio)==true) {
 			ReservaServicio r = new ReservaServicio(fechaEntrada, fechaSalida, c, servicio);

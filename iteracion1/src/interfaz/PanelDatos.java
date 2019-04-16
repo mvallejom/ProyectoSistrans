@@ -9,9 +9,9 @@ import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 
 /**
- * Clase de interfaz para mostrar los resultados de la ejecuci√≥n de las 
+ * Clase de interfaz para mostrar los resultados de la ejecuciÛn de las 
  * operaciones realizadas por el usuario
- * @author Germ√°n Bravo
+ * @author Germ·n Bravo
  */
 @SuppressWarnings("serial")
 public class PanelDatos extends JPanel
@@ -25,7 +25,7 @@ public class PanelDatos extends JPanel
     // Atributos de interfaz
     // -----------------------------------------------------------------
 	/**
-	 * √?rea de texto con barras de deslizamiento
+	 * ¡rea de texto con barras de deslizamiento
 	 */
 	private JTextArea textArea;
 
@@ -39,21 +39,21 @@ public class PanelDatos extends JPanel
      */
     public PanelDatos ()
     {
-        setBorder (new TitledBorder ("Panel de informaci√≥n"));
+        setBorder (new TitledBorder ("Panel de informaciÛn"));
         setLayout( new BorderLayout( ) );
         
-        textArea = new JTextArea("Aqu√≠ sale el resultado de las operaciones solicitadas");
+        textArea = new JTextArea("AquÌ sale el resultado de las operaciones solicitadas");
         textArea.setEditable(false);
         add (new JScrollPane(textArea), BorderLayout.CENTER);
     }
 
     // -----------------------------------------------------------------
-    // M√©todos
+    // MÈtodos
     // -----------------------------------------------------------------
 
     /**
-     * Actualiza el panel con la informaci√≥n recibida por par√°metro.
-     * @param texto El texto con el que actualiza el √°rea
+     * Actualiza el panel con la informaciÛn recibida por par·metro.
+     * @param texto El texto con el que actualiza el ·rea
      */
     public void actualizarInterfaz (String texto)
     {

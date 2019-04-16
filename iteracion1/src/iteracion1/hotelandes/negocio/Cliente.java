@@ -1,5 +1,4 @@
 package iteracion1.hotelandes.negocio;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -63,19 +62,19 @@ public void setConsumos(List<Consumo> consumos) {
 
 	private Habitacion habitacion;
 
-	private Hotel hotel;
+private Hotel hotel;
 	
 	private Consumo consumo;
 	
 	
 	
-	public Cliente(String tipoDocumento, long numeroDocumento, String nombre, String correo,Habitacion hab,Hotel h) {
-		super(tipoDocumento,numeroDocumento,nombre,correo);
-		this.habitacion=hab;
-		hotel=h;
+	public Cliente(String tipoDocumento, Long numeroDocumento, String nombre, String correo,int  hab) {
+		this.habitacion=hotel.darHabitacionPorNumero(hab);
+		
 		estaEnElHotel=false;
 	}
 
+	
 	
 	
 	public List<ReservaServicio> getServicios() {
@@ -146,13 +145,14 @@ public void setConsumos(List<Consumo> consumos) {
 	/**
 	 * RF 7
 	 */
-	public void hacerReservaAlojamiento(Date fechaEntrada, Date fechaSalida,int numPersonas	,String nombreHotel,List<Cliente>clientes) {
-		ReservaHabitacion reserva = new ReservaHabitacion(fechaEntrada, fechaSalida, numPersonas, nombreHotel, clientes);
+	public void hacerReservaAlojamiento(String fechaEntrada, String fechaSalida,int numPersonas	,Habitacion h,List<Cliente>clientes) {
+		ReservaHabitacion reserva = new ReservaHabitacion(fechaEntrada, fechaSalida, numPersonas, h, clientes);
 		reservasHabitacion.add(reserva);
 		for (Cliente c:reserva.getClientes())
-		{
+		{	
 		hotel.adicionarCliente(this);
 		}
+		
 		hotel.getReservaHabitacion().add(reserva);
 		
 	}
@@ -166,7 +166,7 @@ public void setConsumos(List<Consumo> consumos) {
 	 * RF 8
 	 * @throws Exception 
 	 */
-	public void generarReservaServicio( Date fechaEntrada,Date fechaSalida, int horas,Servicio servicio) throws Exception {
+	public void generarReservaServicio( String fechaEntrada,String fechaSalida, int horas,Servicio servicio) throws Exception {
 		
 		if(hotel.servicioDisponible(fechaEntrada, fechaSalida, servicio)==true) {
 			ReservaServicio r = new ReservaServicio(fechaEntrada, fechaSalida, this, servicio);

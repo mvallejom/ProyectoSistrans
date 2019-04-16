@@ -1,6 +1,5 @@
 package iteracion1.hotelandes.negocio;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -15,7 +14,7 @@ import java.util.Set;
 public class Habitacion
 {
 	
-	private String numero;
+	private int numero;
 
 	private String descripcion; 
 	
@@ -31,30 +30,30 @@ public class Habitacion
 
 	private double cuenta;
 
-	private Hotel hotel;
+	private int hotel;
 
 
 	private List<Consumo> consumo;
 
 	private List<Cliente> clientes;
 
-	private PlanConsumo planConsumo;
+	private int planConsumo;
 
 	public Habitacion(){
 		super();
 	}
 
 
-	public Habitacion(String numero, int capacidad, TipoHabitacion tipoHabitacion, List<String> servicios,
-			double costoNoche, double cuenta, Hotel hotel, List<Consumo> consumo, List<Cliente> clientes,
-			PlanConsumo planConsumo) {
+	public Habitacion(int numero, int capacidad, TipoHabitacion tipoHabitacion, List<Servicio> servicios,
+			double costoNoche, int idHotel, List<Consumo> consumo, List<Cliente> clientes,
+			int planConsumo) {
 		super();
 		this.numero = numero;
 		this.capacidad = capacidad;
 		this.tipoHabitacion = tipoHabitacion;
 		this.costoNoche = costoNoche;
-		this.cuenta = cuenta;
-		this.hotel = hotel;
+		this.cuenta = 0;
+		this.hotel = idHotel;
 		this.consumo = consumo;
 		this.clientes = clientes;
 		this.planConsumo = planConsumo;
@@ -62,11 +61,11 @@ public class Habitacion
 	}
 
 
-	public String getNumero() {
+	public int getNumero() {
 		return numero;
 	}
 
-	public void setNumero(String numero) {
+	public void setNumero(int numero) {
 		this.numero = numero;
 	}
 
@@ -104,11 +103,11 @@ public class Habitacion
 		this.cuenta = cuenta;
 	}
 
-	public Hotel getHotel() {
+	public int getHotel() {
 		return hotel;
 	}
 
-	public void setHotel(Hotel hotel) {
+	public void setHotel(int hotel) {
 		this.hotel = hotel;
 	}
 
@@ -128,11 +127,11 @@ public class Habitacion
 		this.clientes = clientes;
 	}
 
-	public PlanConsumo getPlanConsumo() {
+	public int getPlanConsumo() {
 		return planConsumo;
 	}
 
-	public void setPlanConsumo(PlanConsumo planConsumo) {
+	public void setPlanConsumo(int planConsumo) {
 		this.planConsumo = planConsumo;
 	}
 
@@ -151,7 +150,7 @@ public class Habitacion
 
 
 	public void AgregarConsumoDeHabitacion(List<Producto> prod) {
-		Consumo con=new Consumo(Lugar.HABIATCION, this, prod,new Date())	;
+		Consumo con=new Consumo(Lugar.HABIATCION.toString(), this, prod,new String())	;
 		cuenta+=con.calcularCostoTotal();
 	}
 

@@ -19,6 +19,7 @@ public class Producto
 	 * @ordered
 	 */
 	
+	private long id;
 	private String nombre;
 
 	/**
@@ -49,11 +50,22 @@ public class Producto
 	}
 	
 
-	public Producto(String nombre, double costo, List<Consumo> consumosHabitacion) {
+	public Producto(long id,String nombre, double costo, List<Consumo> consumosHabitacion) {
 		super();
+		this.id=id;
 		this.nombre = nombre;
 		this.costo = costo;
 		this.consumosHabitacion = consumosHabitacion;
+	}
+
+
+	public long getId() {
+		return id;
+	}
+
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 
