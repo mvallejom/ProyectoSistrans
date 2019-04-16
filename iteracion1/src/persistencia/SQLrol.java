@@ -2,7 +2,6 @@ package persistencia;
 
 
 
-import java.util.Date;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
@@ -31,7 +30,7 @@ class SQLRol
 	}
 
 	
-	public long eliminarRolPornumero (PersistenceManager pm, long idRol)
+	public long eliminarRol(PersistenceManager pm, long idRol)
 	{
         Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaRol () + " WHERE numero = ?");
         q.setParameters(idRol);

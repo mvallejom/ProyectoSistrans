@@ -1,6 +1,6 @@
 package iteracion1.hotelandes.negocio;
 
-import java.util.Date;
+
 import java.util.List;
 
 /**
@@ -11,13 +11,13 @@ import java.util.List;
 
 public class ReservaHabitacion
 {
-	private Date fechaEntrada;
+	private String fechaEntrada;
 
-	private Date fechaSalida;
+	private String fechaSalida;
 
 	private int numeroPersonas;
 
-	private String hotel;
+	private Habitacion habitacion;
 	
 	private List<Cliente> clientes;
 
@@ -25,30 +25,30 @@ public class ReservaHabitacion
 		super();
 	}
 
-	public ReservaHabitacion(Date fechaEntrada, Date fechaSalida, int numeroPersonas, String hotel, List<Cliente> cliente) {
+	public ReservaHabitacion(String fechaEntrada, String fechaSalida, int numeroPersonas, Habitacion habitacion, List<Cliente> cliente) {
 		super();
 		this.fechaEntrada = fechaEntrada;
 		this.fechaSalida = fechaSalida;
 		this.numeroPersonas = numeroPersonas;
-		this.hotel = hotel;
+		this.habitacion = habitacion;
 		this.clientes = cliente;
 	}
 
 
 
-	public Date getFechaEntrada() {
+	public String getFechaEntrada() {
 		return fechaEntrada;
 	}
 
-	public void setFechaEntrada(Date fechaEntrada) {
+	public void setFechaEntrada(String fechaEntrada) {
 		this.fechaEntrada = fechaEntrada;
 	}
 
-	public Date getFechaSalida() {
+	public String getFechaSalida() {
 		return fechaSalida;
 	}
 
-	public void setFechaSalida(Date fechaSalida) {
+	public void setFechaSalida(String fechaSalida) {
 		this.fechaSalida = fechaSalida;
 	}
 
@@ -60,12 +60,12 @@ public class ReservaHabitacion
 		this.numeroPersonas = numeroPersonas;
 	}
 
-	public String getHotel() {
-		return hotel;
+	public Habitacion getHabitacion() {
+		return this.habitacion;
 	}
 
-	public void setHotel(String hotel) {
-		this.hotel = hotel;
+	public void setHabitacion(Habitacion habitacion) {
+		this.habitacion = habitacion;
 	}
 
 	public List<Cliente> getClientes() {

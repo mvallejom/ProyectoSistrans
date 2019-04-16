@@ -18,7 +18,7 @@ class SQLUtil
 	
 	public long nextval (PersistenceManager pm)
 	{
-        Query q = pm.newQuery(SQL, "SELECT "+ pp.darHotel() + ".nextval FROM DUAL");
+        Query q = pm.newQuery(SQL, "SELECT "+ pp.darTablaHotel() + ".nextval FROM DUAL");
         q.setResultClass(Long.class);
         long resp = (long) q.executeUnique();
         return resp;
@@ -40,7 +40,9 @@ class SQLUtil
         Query qServicioHotel = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaServicio ());
         Query qTipoHabitacion = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaTipoHabitacion ());
         Query qUsuario = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaUsuario ());
-        
+        Query qConvencion = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaConvencion());
+        Query qMantenimiento = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaMantenimiento ());
+
         
        
 
@@ -57,11 +59,14 @@ class SQLUtil
         long ServicioHotelEliminados = (long) qServicioHotel.executeUnique ();
         long TipoHabitacionEliminados = (long) qTipoHabitacion.executeUnique ();
         long TipoUsuario = (long) qUsuario.executeUnique ();
+        long convencionEliminados = (long) qConvencion.executeUnique ();
+        long mantenimientoEliminados = (long) qMantenimiento.executeUnique ();
+
 
       
         return new long[] {ClienteEliminados, ConsumoEliminados, HabitacionEliminados, HotelEliminados, 
         		InfoConsumoEliminados, LugarEliminados, PlanConsumoEliminados,ReservaHabitacionEliminados,ReservaServicioEliminados,RolEliminados,
-        		ServicioHotelEliminados,TipoHabitacionEliminados,TipoUsuario};
+        		ServicioHotelEliminados,TipoHabitacionEliminados,TipoUsuario,convencionEliminados,mantenimientoEliminados};
 	}
 
 }

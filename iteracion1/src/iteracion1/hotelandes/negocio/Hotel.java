@@ -1,9 +1,8 @@
 package iteracion1.hotelandes.negocio;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
+import persistencia.PersistenciaHotel;
 
 
 /**
@@ -36,7 +35,11 @@ public class Hotel
 	private List<ReservaServicio> reservasServicio;
 
 	private List<Cliente> clientes;
- int id;
+
+	private int id;
+
+	private PersistenciaHotel ph;
+
 
 
 	public Hotel(String nombre, List<Habitacion> habitaciones, List<PlanConsumo> planesConsumo,
@@ -55,6 +58,11 @@ public class Hotel
 		this.servicios = servicios;
 		this.reservasServicio = reservas;
 		this.clientes = clientes;
+
+
+
+		ph = PersistenciaHotel.getInstance();
+
 	}
 
 
@@ -154,7 +162,7 @@ public class Hotel
 	public int getId() {
 		return this.id;
 	}
-	
+
 	public void setId(int id) {
 		this.id=id;
 	}
@@ -185,7 +193,8 @@ public class Hotel
 		}
 		return resp;
 	}
-	public boolean servicioDisponible(Date inicio, Date fin,Servicio s) {
+
+	public boolean servicioDisponible(String inicio, String fin,Servicio s) {
 		List <ReservaServicio> serviciosEnfecha = new ArrayList<ReservaServicio>();
 		int cont =0;
 		boolean resp=false;
@@ -215,6 +224,329 @@ public class Hotel
 		}
 		return resp;
 	}
+
+
+	/***********************************************************************
+	 *							REQUERIMIENTOS FUNCIONALES
+	 *************************************************************************/
+
+
+
+
+
+
+
+
+	//----------------------------------------------------------------------------------------------------
+	//Habitacion
+	//----------------------------------------------------------------------------------------------------
+
+	public Habitacion agregarHabitacion(int documento, int numeroHabitacion,String descripcion, int capacidad,int  idTipo, double costo,int idPlanConsumo, int idHotel) {
+		return ph.adicionarHabitacion(documento, numeroHabitacion, descripcion, capacidad, idTipo, idHotel, costo, idPlanConsumo);
+
+	}
+
+	public List<Habitacion> darHabitaciones() {
+		return ph.darHabitacions();
+	}
+
+	public Habitacion darHabitacionPorId(int idHabitacion) {
+		return ph.darHabitacionPorId(idHabitacion);
+	}
+
+	public int eliminarHabitacionPorId(int idHabitacion) {
+		return ph.eliminarHabitacionPorId(idHabitacion);
+	}
+
+	
+
+	//----------------------------------------------------------------------------------------------------
+	//Usuario
+	//----------------------------------------------------------------------------------------------------
+
+	public Usuario agregarUsuario(int numDoc, String tipoDoc,String descripcion, String correo,String  rol, Hotel h) {
+		return ph.adicionarUsuario(numDoc, tipoDoc, descripcion, correo, rol, h);
+
+	}
+
+	public List<Usuario> darUsuarioes() {
+		return ph.darUsuarios();
+	}
+
+	public Usuario darUsuarioPorId(int idUsuario) {
+		return ph.darUsuarioPorId(idUsuario);
+	}
+
+	public long eliminarUsuarioPorId(int idUsuario) {
+		return ph.eliminarUsuarioPorId(idUsuario);
+	}
+
+	//----------------------------------------------------------------------------------------------------
+	//Consumo
+	//----------------------------------------------------------------------------------------------------
+
+	public Consumo agregarConsumo(String lugar,double costoTotal, int numeroHabitacion, String fecha, long documento) {
+		return ph.adicionarConsumo(lugar, numeroHabitacion, costoTotal, fecha, documento);
+	}
+
+	public List<Consumo> darConsumoes() {
+		return ph.darConsumos();
+	}
+
+	public Consumo darConsumoPorId(int idConsumo) {
+		return ph.darConsumoPorId(idConsumo);
+	}
+
+	public long eliminarConsumoPorId(int idConsumo) {
+		return ph.eliminarConsumoPorId(idConsumo);
+	}
+
+
+	//----------------------------------------------------------------------------------------------------
+	//Cliente
+	//----------------------------------------------------------------------------------------------------
+
+	public Cliente agregarCliente( int numeroHabitacion, long documento) {
+		return ph.adicionarCliente(documento, numeroHabitacion);
+	}
+
+	public List<Cliente> darClientees() {
+		return ph.darClientes();
+	}
+
+	public Cliente darClientePorId(int idCliente) {
+		return ph.darClientePorId(idCliente);
+	}
+
+	public long eliminarClientePorId(long idCliente) {
+		
+		return ph.eliminarClientePorId(idCliente);
+	}
+
+	//----------------------------------------------------------------------------------------------------
+	//Convencion
+	//----------------------------------------------------------------------------------------------------
+
+	public Convencion agregarConvencion(ReservaHabitacion reserva, OrganizadorEventos org) {
+		return ph.adicionarConvencion(this, reserva, org);
+	}
+
+	public List<Convencion> darConvenciones() {
+		return ph.darConvencions();
+	}
+
+	public Convencion darConvencionPorId(int idConvencion) {
+		return ph.darConvencionPorId(idConvencion);
+	}
+
+	public long eliminarConvencionPorId(int idConvencion) {
+		return ph.eliminarConvencionPorId(idConvencion);
+	}
+
+	//----------------------------------------------------------------------------------------------------
+	//InfoConsumo
+	//----------------------------------------------------------------------------------------------------
+
+	public InfoConsumo agregarInfoConsumo(Producto p, Servicio s, int cantidad, Lugar lugar, double costoTotal,int doc,String fecha) {
+		return ph.adicionarInfoConsumo(p, s, cantidad, fecha, costoTotal, doc, fecha);
+	}
+
+	public List<InfoConsumo> darInfoConsumoes() {
+		return ph.darInfoConsumos();
+	}
+
+	public InfoConsumo darInfoConsumoPorId(int idInfoConsumo) {
+		return ph.darInfoConsumoPorId(idInfoConsumo);
+	}
+
+	public long eliminarInfoConsumoPorId(int idInfoConsumo) {
+		return ph.eliminarInfoConsumoPorId(idInfoConsumo);
+	}
+
+
+	//----------------------------------------------------------------------------------------------------
+	//Lugar
+	//----------------------------------------------------------------------------------------------------
+
+	public String agregarLugar(String nombre) {
+		return ph.adicionarLugar(nombre);
+	}
+
+	public List<Lugar> darLugares() {
+		return ph.darLugars();
+	}
+
+	public Lugar darLugarPorId(int idLugar) {
+		return ph.darLugarPorId(idLugar);
+	}
+
+	public long eliminarLugarPorId(int idLugar) {
+		return ph.eliminarLugarPorId(idLugar);
+	}
+
+	//----------------------------------------------------------------------------------------------------
+	//Mantenimiento
+	//----------------------------------------------------------------------------------------------------
+
+	public Mantenimiento agregarMantenimiento(String fechaInicio, String fechaFin, Servicio s, Habitacion h) {
+		return ph.adicionarMantenimiento(fechaInicio, fechaFin, s, h);
+	}
+
+	public List<Mantenimiento> darMantenimientoes() {
+		return ph.darMantenimientos();
+	}
+
+	public Mantenimiento darMantenimientoPorId(int idMantenimiento) {
+		return ph.darMantenimientoPorId(idMantenimiento);
+	}
+
+	public long eliminarMantenimientoPorId(int idMantenimiento) {
+		return ph.eliminarMantenimientoPorId(idMantenimiento);
+	}
+
+
+	//----------------------------------------------------------------------------------------------------
+	//PlanConsumo
+	//----------------------------------------------------------------------------------------------------
+
+	public PlanConsumo agregarPlanConsumo(int numDoc, String tipoPlan,String descripcion, Hotel h, Habitacion hab, String fecha,Cliente c) {
+		return ph.adicionarPlanConsumo(numDoc, tipoPlan, descripcion, h, hab, fecha, c);
+	}
+
+	public List<PlanConsumo> darPlanConsumoes() {
+		return ph.darPlanConsumos();
+	}
+
+	public PlanConsumo darPlanConsumoPorId(int idPlanConsumo) {
+		return ph.darPlanConsumoPorId(idPlanConsumo);
+	}
+
+	public long eliminarPlanConsumoPorId(int idPlanConsumo) {
+		return ph.eliminarPlanConsumoPorId(idPlanConsumo);
+	}
+
+	//----------------------------------------------------------------------------------------------------
+	//Producto
+	//----------------------------------------------------------------------------------------------------
+
+	public Producto agregarProducto(String nombre, double costo, Servicio s) {
+		return ph.adicionarProducto(nombre, costo, s);
+	}
+
+	public List<Producto> darProductoes() {
+		return ph.darProductos();
+	}
+
+	public Producto darProductoPorId(int idProducto) {
+		return ph.darProductoPorId(idProducto);
+	}
+
+	public long eliminarProductoPorId(int idProducto) {
+		return ph.eliminarProductoPorId(idProducto);
+	}
+
+	//----------------------------------------------------------------------------------------------------
+	//ReservaHabitacion
+	//----------------------------------------------------------------------------------------------------
+
+	public ReservaHabitacion agregarReservaHabitacion(String fechaEntrada, String fechaSalida, int numeroPersonas,Habitacion hab, List<Cliente> clientes) {
+		return ph.adicionarReservaHabitacion(fechaEntrada, fechaSalida, numeroPersonas, clientes, hab);
+	}
+
+	public List<ReservaHabitacion> darReservaHabitaciones() {
+		return ph.darReservaHabitacions();
+	}
+
+	public ReservaHabitacion darReservaHabitacionPorId(int idReservaHabitacion) {
+		return ph.darReservaHabitacionPorId(idReservaHabitacion);
+	}
+
+	public long eliminarReservaHabitacionPorId(int idReservaHabitacion) {
+		return ph.eliminarReservaHabitacionPorId(idReservaHabitacion);
+	}
+
+	//----------------------------------------------------------------------------------------------------
+	//ReservaServicio
+	//----------------------------------------------------------------------------------------------------
+
+	public ReservaServicio agregarReservaServicio(String fechaEntrada, String fechaSalida, Cliente c , Servicio s) {
+		return ph.adicionarReservaServicio(fechaEntrada, fechaSalida, s, c);
+	}
+
+	public List<ReservaServicio> darReservaServicioes() {
+		return ph.darReservaServicios();
+	}
+
+	public ReservaServicio darReservaServicioPorId(int idReservaServicio) {
+		return ph.darReservaServicioPorId(idReservaServicio);
+	}
+
+	public long eliminarReservaServicioPorId(int idReservaServicio) {
+		return ph.eliminarReservaServicioPorId(idReservaServicio);
+	}
+
+	//----------------------------------------------------------------------------------------------------
+	//Rol
+	//----------------------------------------------------------------------------------------------------
+
+	public String agregarRol(String nombre) {
+		return ph.adicionarRol(nombre);
+	}
+
+	public List<String> darRoles() {
+		return ph.darRols();
+	}
+
+	public String darRolPorId(int idRol) {
+		return ph.darRolPorId(idRol);
+	}
+
+	public long eliminarRolPorId(int idRol) {
+		return ph.eliminarRolPorId(idRol);
+	}
+
+
+	//----------------------------------------------------------------------------------------------------
+	//Servicio
+	//----------------------------------------------------------------------------------------------------
+
+	public Servicio agregarServicio(String nombre, double costo, String horaApertura, String horaCierre, int capacidad,String descripcion,Lugar lugar,boolean disponible) {
+		return ph.adicionarServicio(nombre, costo, horaApertura, horaCierre, capacidad, descripcion, lugar, disponible);
+	}
+
+	public List<Servicio> darServicioes() {
+		return ph.darServicios();
+	}
+
+	public Servicio darServicioPorId(int idServicio) {
+		return ph.darServicioPorId(idServicio);
+	}
+
+	public long eliminarServicioPorId(int idServicio) {
+		return ph.eliminarServicioPorId(idServicio);
+	}
+
+	//----------------------------------------------------------------------------------------------------
+	//TipoHabitacion
+	//----------------------------------------------------------------------------------------------------
+
+	public String agregarTipoHabitacion(String tipo) {
+		return ph.adicionarTipoHabitacion(tipo);
+	}
+
+	public List<TipoHabitacion> darTipoHabitaciones() {
+		return ph.darTipoHabitacions();
+	}
+
+	public TipoHabitacion darTipoHabitacionPorId(int idTipoHabitacion) {
+		return ph.darTipoHabitacionPorId(idTipoHabitacion);
+	}
+
+	public long eliminarTipoHabitacionPorId(int idTipoHabitacion) {
+		return ph.eliminarTipoHabitacionPorId(idTipoHabitacion);
+	}
+
+
 
 }
 

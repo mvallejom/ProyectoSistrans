@@ -46,7 +46,7 @@ public class PlanConsumo
 	 * @ordered
 	 */
 	
-	private Habitacion habitaciones;
+	private Cliente cliente;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -58,12 +58,12 @@ public class PlanConsumo
 	}
 
 	
-	public PlanConsumo(String tipoPlan, String descripcion, Hotel hotel, Habitacion habitaciones) {
+	public PlanConsumo(String tipoPlan, String descripcion, Hotel hotel, Cliente cliente) {
 		super();
 		this.tipoPlan = tipoPlan;
 		this.descripcion = descripcion;
 		this.hotel = hotel;
-		this.habitaciones = habitaciones;
+		this.cliente = cliente;
 	}
 
 
@@ -91,12 +91,12 @@ public class PlanConsumo
 		this.hotel = hotel;
 	}
 
-	public Habitacion getHabitaciones() {
-		return habitaciones;
+	public Cliente getCliente() {
+		return cliente;
 	}
 
-	public void setHabitaciones(Habitacion habitaciones) {
-		this.habitaciones = habitaciones;
+	public void setCliente(Cliente c) {
+		this.cliente = c;
 	}
 
 }

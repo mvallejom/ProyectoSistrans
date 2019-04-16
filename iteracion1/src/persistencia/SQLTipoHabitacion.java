@@ -2,7 +2,6 @@ package persistencia;
 
 
 
-import java.util.Date;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
@@ -24,10 +23,10 @@ class SQLTipoHabitacion
 	}
 	
 	
-	public int adicionarTipoHabitacion (PersistenceManager pm, int numero, String tipo) 
+	public int adicionarTipoHabitacion (PersistenceManager pm, long id, String tipo) 
 	{
         Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaTipoHabitacion () + "(id, tipo) values (?, ?)");
-        q.setParameters(numero, tipo);
+        q.setParameters(id, tipo);
         return (int) q.executeUnique();
 	}
 

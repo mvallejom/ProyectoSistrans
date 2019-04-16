@@ -1,7 +1,6 @@
 package persistencia;
 
 
-import java.util.Date;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;

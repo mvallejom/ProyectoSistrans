@@ -1,6 +1,5 @@
 package persistencia;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
@@ -22,7 +21,7 @@ class SQLPlanConsumo
 	}
 	
 	
-	public long adicionarPlanConsumo (PersistenceManager pm, long idPlanConsumo, String tipoPlan, String descripcion,int idhotel, int numH, long doc,Date fecha) 
+	public long adicionarPlanConsumo (PersistenceManager pm, long idPlanConsumo, String tipoPlan, String descripcion,int idhotel, int numH, long doc,String fecha) 
 	{
         Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaPlanConsumo() + "(id, tipo_plan, descripcion, id_hotel) values (?, ?, ?, ?)");
         q.setParameters(idPlanConsumo, tipoPlan, descripcion, idhotel);

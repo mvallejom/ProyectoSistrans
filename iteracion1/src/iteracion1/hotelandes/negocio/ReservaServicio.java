@@ -1,17 +1,16 @@
 package iteracion1.hotelandes.negocio;
 
-import java.util.Date;
 
 public class ReservaServicio {
 
 	private int id;
-	private Date fechaEntrada;
-	private Date fechaSalida;
+	private String fechaEntrada;
+	private String fechaSalida;
 	private Cliente cliente;
 	private Servicio servicio;
 	
 
-	public ReservaServicio( Date fechaEntrada, Date fechaSalida, Cliente cliente,
+	public ReservaServicio( String fechaEntrada, String fechaSalida, Cliente cliente,
 			Servicio servicio) {
 		this.fechaEntrada = fechaEntrada;
 		this.fechaSalida = fechaSalida;
@@ -42,19 +41,19 @@ public class ReservaServicio {
 		this.id = id;
 	}
 
-	public Date getFechaEntrada() {
+	public String getFechaEntrada() {
 		return fechaEntrada;
 	}
 
-	public void setFechaEntrada(Date fechaEntrada) {
+	public void setFechaEntrada(String fechaEntrada) {
 		this.fechaEntrada = fechaEntrada;
 	}
 
-	public Date getFechaSalida() {
+	public String getFechaSalida() {
 		return fechaSalida;
 	}
 
-	public void setFechaSalida(Date fechaSalida) {
+	public void setFechaSalida(String fechaSalida) {
 		this.fechaSalida = fechaSalida;
 	}
 

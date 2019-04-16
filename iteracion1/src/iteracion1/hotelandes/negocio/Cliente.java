@@ -1,5 +1,4 @@
 package iteracion1.hotelandes.negocio;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -146,8 +145,8 @@ private Hotel hotel;
 	/**
 	 * RF 7
 	 */
-	public void hacerReservaAlojamiento(Date fechaEntrada, Date fechaSalida,int numPersonas	,String nombreHotel,List<Cliente>clientes) {
-		ReservaHabitacion reserva = new ReservaHabitacion(fechaEntrada, fechaSalida, numPersonas, nombreHotel, clientes);
+	public void hacerReservaAlojamiento(String fechaEntrada, String fechaSalida,int numPersonas	,Habitacion h,List<Cliente>clientes) {
+		ReservaHabitacion reserva = new ReservaHabitacion(fechaEntrada, fechaSalida, numPersonas, h, clientes);
 		reservasHabitacion.add(reserva);
 		for (Cliente c:reserva.getClientes())
 		{	
@@ -167,7 +166,7 @@ private Hotel hotel;
 	 * RF 8
 	 * @throws Exception 
 	 */
-	public void generarReservaServicio( Date fechaEntrada,Date fechaSalida, int horas,Servicio servicio) throws Exception {
+	public void generarReservaServicio( String fechaEntrada,String fechaSalida, int horas,Servicio servicio) throws Exception {
 		
 		if(hotel.servicioDisponible(fechaEntrada, fechaSalida, servicio)==true) {
 			ReservaServicio r = new ReservaServicio(fechaEntrada, fechaSalida, this, servicio);

@@ -2,7 +2,6 @@ package persistencia;
 
 
 
-import java.util.Date;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
@@ -24,7 +23,7 @@ class SQLReservaHabitacion
 	}
 	
 	
-	public long adicionarReservaHabitacion (PersistenceManager pm, long idReservaHabitacion, Date fechaEtrada, Date fechaSalida, int numPersonas, long docCliente,long idHotel) 
+	public long adicionarReservaHabitacion (PersistenceManager pm, long idReservaHabitacion, String fechaEtrada, String fechaSalida, int numPersonas, long docCliente,long idHotel) 
 	{
         Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaReservaHabitacion () + "(id, fecha_entrada,fecha_salida, numero_personas, documento_cliente,id_hotel) values (?, ?, ?, ?, ?,?)");
         q.setParameters(idReservaHabitacion, fechaEtrada, fechaSalida, numPersonas, docCliente,idHotel);
