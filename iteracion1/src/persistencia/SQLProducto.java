@@ -53,6 +53,5 @@ class SQLProducto
 		q.setResultClass(Producto.class);
 		return (List<Producto>) q.executeList();
 	}
-
 	
 }

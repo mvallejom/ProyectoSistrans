@@ -53,6 +53,5 @@ class SQLReservaHabitacion
 		q.setResultClass(ReservaHabitacion.class);
 		return (List<ReservaHabitacion>) q.executeList();
 	}
-
 	
 }

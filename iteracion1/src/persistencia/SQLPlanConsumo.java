@@ -51,6 +51,5 @@ class SQLPlanConsumo
 		q.setResultClass(PlanConsumo.class);
 		return (List<PlanConsumo>) q.executeList();
 	}
-
 	
 }
