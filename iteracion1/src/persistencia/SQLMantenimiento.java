@@ -22,10 +22,10 @@ class SQLMantenimiento
 	}
 	
 	
-	public long adicionarMantenimiento (PersistenceManager pm, long idMantenimiento, String fechaInicio, String fechaFin,Servicio s, Habitacion h) 
+	public long adicionarMantenimiento (PersistenceManager pm, long idMantenimiento, String fechaInicio, String fechaFin,List<Servicio> s, List<Habitacion> h) 
 	{
         Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaMantenimiento () + "(id, fecha_inicio, fecha_fin,id_servicio,id_habitacion) values (?,?,?,?, ?)");
-        q.setParameters(idMantenimiento, fechaInicio, fechaFin,s.getId(),h.getNumero());
+        q.setParameters(idMantenimiento, fechaInicio, fechaFin,s.get(0).getId(),h.get(0).getNumero());
         return (long) q.executeUnique();
 	}
 

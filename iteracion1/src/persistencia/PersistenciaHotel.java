@@ -1350,7 +1350,7 @@ return tipo;
 
 
 	
-	public Convencion adicionarConvencion( Hotel h,ReservaHabitacion reserva, OrganizadorEventos org)
+	public Convencion adicionarConvencion( Hotel h,String nombre, OrganizadorEventos org,List<ReservaHabitacion> habs, List<ReservaServicio>servicio)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
@@ -1358,11 +1358,11 @@ return tipo;
 		{
 			tx.begin();
 			long idConvencion=nextval();
-			long tuplasInsertadas = sqlConvencion.adicionarConvencion(pm, idConvencion, reserva.getClientes().get(0).getNumeroDocumento(), org.getNumeroDocumento());
+			long tuplasInsertadas = sqlConvencion.adicionarConvencion(pm, idConvencion, org.getNumeroDocumento());
 			tx.commit();
 
 			log.trace ("Inserción de Convencion: " + idConvencion + ": " + tuplasInsertadas + " tuplas insertadas");	
-			return new Convencion(h, org, reserva);
+			return new Convencion(h, nombre, org, habs, servicio);
 		}
 		catch (Exception e)
 		{
@@ -1427,7 +1427,7 @@ return tipo;
 
 
 	
-	public Mantenimiento adicionarMantenimiento(String fechaInicio, String fechaFin,Servicio s, Habitacion h )
+	public Mantenimiento adicionarMantenimiento(String fechaInicio, String fechaFin,List<Servicio> s, List<Habitacion> h )
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
@@ -1435,7 +1435,7 @@ return tipo;
 		{
 			tx.begin();
 			long idMantenimiento=nextval();
-			long tuplasInsertadas = sqlMantenimiento.adicionarMantenimiento(pm, idMantenimiento, fechaInicio, fechaFin,s,h);
+			long tuplasInsertadas = sqlMantenimiento.adicionarMantenimiento(pm, idMantenimiento, fechaInicio, fechaFin, s, h);
 			tx.commit();
 
 			log.trace ("Inserción de Mantenimiento: " + idMantenimiento + ": " + tuplasInsertadas + " tuplas insertadas");	

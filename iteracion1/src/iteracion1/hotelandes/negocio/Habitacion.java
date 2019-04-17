@@ -38,7 +38,7 @@ public class Habitacion
 	private List<Cliente> clientes;
 
 	private int planConsumo;
-
+	
 	public Habitacion(){
 		super();
 	}

@@ -22,6 +22,7 @@ public class Consumo
 	private int id;
 
 	private String fechaConsumo;
+	private Convencion convencion;
 	
 	public String getFechaConsumo() {
 		return fechaConsumo;
@@ -93,6 +94,11 @@ public class Consumo
 		costoTotal=costo;
 	}
 
+	public Consumo(Convencion c,double costo) {
+		
+		this.habitacion = habitacion;
+		costoTotal=costo;
+	}
 
 	public int getId() {
 		return id;

@@ -20,10 +20,10 @@ class SQLConvencion
 	}
 	
 	
-	public long adicionarConvencion (PersistenceManager pm, long idConvencion, long doc, long idOrganizador) 
+	public long adicionarConvencion (PersistenceManager pm, long idConvencion, long idOrganizador) 
 	{
-        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaConvencion () + "(id, cuenta, documento, id_organizador) values (?, ?, ?, ?)");
-        q.setParameters(idConvencion, 0	, doc, idOrganizador);
+        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaConvencion () + "(id, cuenta, id_organizador) values (?, ?, ?)");
+        q.setParameters(idConvencion, 0	, idOrganizador);
         return (long) q.executeUnique();
 	}
 
