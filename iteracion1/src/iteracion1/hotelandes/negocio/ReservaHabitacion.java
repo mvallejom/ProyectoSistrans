@@ -11,6 +11,8 @@ import java.util.List;
 
 public class ReservaHabitacion
 {
+	private int id;
+	private Hotel h;
 	private String fechaEntrada;
 
 	private String fechaSalida;
@@ -26,15 +28,37 @@ public class ReservaHabitacion
 	}
 
 	public ReservaHabitacion(String fechaEntrada, String fechaSalida, int numeroPersonas, Habitacion habitacion, List<Cliente> cliente) {
-		super();
+		id=h.getReservaHabitacion().size()+1;
 		this.fechaEntrada = fechaEntrada;
 		this.fechaSalida = fechaSalida;
 		this.numeroPersonas = numeroPersonas;
 		this.habitacion = habitacion;
 		this.clientes = cliente;
 	}
+	public ReservaHabitacion(String fechaEntrada, String fechaSalida, Habitacion habitacion) {
+		id=h.getReservaHabitacion().size()+1;
+		this.fechaEntrada = fechaEntrada;
+		this.fechaSalida = fechaSalida;
+		this.habitacion = habitacion;
+	}
 
 
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Hotel getH() {
+		return h;
+	}
+
+	public void setH(Hotel h) {
+		this.h = h;
+	}
 
 	public String getFechaEntrada() {
 		return fechaEntrada;

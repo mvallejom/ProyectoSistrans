@@ -47,6 +47,25 @@ public class Empleado extends Usuario
 	//-------------------------------------------
 	//
 	//----------------------------------------
+	
+/************************************************************************************************************
+ * 										REQUERIMIENTOS
+ ***********************************************************************************************************/
+	public void generarReservaServicio( String fechaEntrada,String fechaSalida, int horas,Servicio servicio,Cliente c) throws Exception {
+
+		if(hotel.servicioDisponible(fechaEntrada, fechaSalida, servicio)==true) {
+			ReservaServicio r = new ReservaServicio(fechaEntrada, fechaSalida, c, servicio);
+			Consumo m=new Consumo(c.getHabitacion(), servicio.getCosto());
+		}
+		else {
+			throw new Exception();
+		}
+	}
+
+
+	/*RF10 - REGISTRAR UN CONSUMO DE UN SERVICIO DEL HOTEL POR PARTE DE UN CLIENTE O SUS ACOMPAÑANTES
+	Registra un consumo de un servicio por parte de un cliente o sus acompañantes. Esta operación es
+	realizada por un empleado del hotel.*/
 	public void registrarConsumo(String lugar,Cliente cliente,List<Producto> productos,boolean añadirHabitacion,List<Servicio> servicios) {
 		double totalPagar=0;
 		for(Producto p:productos) {
@@ -64,18 +83,7 @@ public class Empleado extends Usuario
 		}
 
 	}
-
-	public void generarReservaServicio( String fechaEntrada,String fechaSalida, int horas,Servicio servicio,Cliente c) throws Exception {
-
-		if(hotel.servicioDisponible(fechaEntrada, fechaSalida, servicio)==true) {
-			ReservaServicio r = new ReservaServicio(fechaEntrada, fechaSalida, c, servicio);
-			Consumo m=new Consumo(c.getHabitacion(), servicio.getCosto());
-		}
-		else {
-			throw new Exception();
-		}
-	}
-
+	
 }
 
 

@@ -141,10 +141,15 @@ private Hotel hotel;
 		this.habitacion = habitacion;
 	}
 
+	/*********************************************************************************
+	 * *						REQUERIMIENTOS
+	 **********************************************************************************/
 	
-	/**
-	 * RF 7
-	 */
+	/*
+	RF7 - REGISTRAR UNA RESERVA DE ALOJAMIENTO
+	Reserva una habitación por un período de tiempo, por parte de un cliente, siempre y cuando esté disponible.
+	Esta operación es realizada por un cliente.*/
+	
 	public void hacerReservaAlojamiento(String fechaEntrada, String fechaSalida,int numPersonas	,Habitacion h,List<Cliente>clientes) {
 		ReservaHabitacion reserva = new ReservaHabitacion(fechaEntrada, fechaSalida, numPersonas, h, clientes);
 		reservasHabitacion.add(reserva);
@@ -162,10 +167,10 @@ private Hotel hotel;
 	}
 	
 	
-	/**
-	 * RF 8
-	 * @throws Exception 
-	 */
+	/*RF8 - REGISTRAR UNA RESERVA DE UN SERVICIO DEL HOTEL POR PARTE DE UN CLIENTE
+	Reserva la prestación de un servicio por parte de un cliente, siempre y cuando haya disponibilidad. Esta
+	operación es realizada por un cliente.*/
+	
 	public void generarReservaServicio( String fechaEntrada,String fechaSalida, int horas,Servicio servicio) throws Exception {
 		
 		if(hotel.servicioDisponible(fechaEntrada, fechaSalida, servicio)==true) {

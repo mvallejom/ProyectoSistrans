@@ -43,8 +43,16 @@ public class Recepcionista extends Usuario
 		this.hotel = hotel;
 	}
 
-	//RF 9
-	public void checkIn( ReservaHabitacion reservaHabitacion,Habitacion h) {
+	
+	/*****************************************************************************
+	 * 							REQUERIMIENTOS
+	 ****************************************************************************/
+	
+	
+	/*RF9 - REGISTRAR LA LLEGADA DE UN CLIENTE AL HOTEL
+	Registra la llegada de un cliente al hotel, correspondiente a una reserva ya registrada. Esta operación es
+	realizada por un recepcionista del hotel.*/
+	public void registrarLlegadaCLiente( ReservaHabitacion reservaHabitacion,Habitacion h) {
 		h.setClientes(reservaHabitacion.getClientes());
 		for (Cliente c:reservaHabitacion.getClientes()) {
 			List<Consumo> consumos=new ArrayList();
@@ -52,7 +60,11 @@ public class Recepcionista extends Usuario
 		}
 	}
 
-	public boolean checkOut(Cliente c) throws Exception {
+	
+	/*RF11 - REGISTRAR LA SALIDA DE UN CLIENTE
+	Registra la salida de un cliente al hotel, con todo lo que eso implica. Esta operación es realizada por un
+	recepcionista del hotel.*/
+	public boolean registrarSalidaCliente(Cliente c) throws Exception {
 
 		boolean pazYsalvo=false;
 		double totalPagar=c.getHabitacion().getCuenta();
