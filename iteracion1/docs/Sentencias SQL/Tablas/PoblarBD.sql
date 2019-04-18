@@ -226,88 +226,61 @@ VALUES (1, 0, 1);
 /* CLIENTES */
 
 INSERT INTO Cliente
-VALUES (23806, null, 1, 1);
+VALUES (23806, null, 1, 1, 0);
 
 INSERT INTO Cliente
-VALUES (78709, null, 1, 1);
+VALUES (78709, null, 1, 1, 0);
 
 INSERT INTO Cliente
-VALUES (81043, null, 1, 1);
+VALUES (81043, null, 1, 1, 0);
 
 INSERT INTO Cliente
-VALUES (62345, null, 1, 1);
+VALUES (62345, null, 1, 1, 0);
 
 INSERT INTO Cliente
-VALUES (90924, null, 1, 1);
+VALUES (90924, null, 1, 1, 0);
 
 INSERT INTO Cliente
-VALUES (55645, null, 1, 1);
+VALUES (55645, null, 1, 1, 0);
 
 INSERT INTO Cliente
-VALUES (81942, null, 1, 1);
+VALUES (81942, null, 1, 1, 0);
 
 INSERT INTO Cliente
-VALUES (1659, null, 1, 1);
+VALUES (1659, null, 1, 1, 0);
 
 INSERT INTO Cliente
-VALUES (92224, null, null, null);
+VALUES (92224, null, null, null, 0);
 
 INSERT INTO Cliente
-VALUES (80127, null, null, null);
+VALUES (80127, null, null, null, 0);
 
 INSERT INTO Cliente
-VALUES (52384, null, null, null);
+VALUES (52384, null, null, null, 0);
 
 INSERT INTO Cliente
-VALUES (22051, null, null, null);
+VALUES (22051, null, null, null, 0);
 
 INSERT INTO Cliente
-VALUES (56354, null, null, null);
+VALUES (56354, null, null, null, 0);
 
 INSERT INTO Cliente
-VALUES (96255, null, null, null);
+VALUES (96255, null, null, null, 0);
 
 INSERT INTO Cliente
-VALUES (20798, null, null, null);
+VALUES (20798, null, null, null, 0);
 
 INSERT INTO Cliente
-VALUES (87854, null, null, null);
+VALUES (87854, null, null, null, 0);
 
 INSERT INTO Cliente
-VALUES (61322, null, null, null);
+VALUES (61322, null, null, null, 0);
 
 INSERT INTO Cliente
-VALUES (16796, null, null, null);
+VALUES (16796, null, null, null, 0);
 
 INSERT INTO Cliente
-VALUES (43935, null, null, null);
+VALUES (43935, null, null, null, 0);
 
 INSERT INTO Cliente
-VALUES (38501, null, null, null);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+VALUES (38501, null, null, null, 0);

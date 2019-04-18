@@ -135,11 +135,13 @@ CREATE TABLE Cliente(
     numero_habitacion varchar2(20),
     plan_consumo number(20),
     id_convencion number(20),
+    gasto_total number(10),
     PRIMARY KEY(numero_documento),
     FOREIGN KEY(numero_documento) REFERENCES Usuario(numero_documento),
     FOREIGN KEY(plan_consumo) REFERENCES PlanConsumo(id),
     FOREIGN KEY(numero_habitacion) REFERENCES Habitacion(numero),
-    FOREIGN KEY(id_convencion) REFERENCES Convencion(id)
+    FOREIGN KEY(id_convencion) REFERENCES Convencion(id),
+    CHECK(gasto_total >= 0)
 );
 
 CREATE TABLE ReservaHabitacion(
